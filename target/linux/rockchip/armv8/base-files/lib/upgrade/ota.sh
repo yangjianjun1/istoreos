@@ -4,13 +4,13 @@ type 'board_name' >/dev/null 2>/dev/null || . /lib/functions.sh
 export_ota_url() {
 	local board="$(board_name)"
 	case "$board" in
-	friendlyarm,nanopi-r3s|\
 	friendlyarm,nanopi-r4s|\
 	friendlyarm,nanopi-r4se|\
 	friendlyarm,nanopi-r76s)
 		export -n OTA_URL_BASE="https://fw0.koolcenter.com/iStoreOS/${board##*-}"
 		;;
 	hlink,h28k|\
+	linkease,easepi-r2|\
 	linkfog,ala2|\
 	radxa,e20c|\
 	radxa,e24c|\
@@ -36,6 +36,10 @@ export_ota_url() {
 	friendlyarm,nanopi-r2c|\
 	friendlyarm,nanopi-r2s)
 		export -n OTA_URL_BASE="https://fw0.koolcenter.com/iStoreOS/r2s"
+		;;
+	friendlyarm,nanopi-r3s|\
+	friendlyarm,nanopi-r3s-lts)
+		export -n OTA_URL_BASE="https://fw0.koolcenter.com/iStoreOS/r3s"
 		;;
 	friendlyarm,nanopi-r5c|\
 	friendlyelec,nanopi-r5s-c1|\

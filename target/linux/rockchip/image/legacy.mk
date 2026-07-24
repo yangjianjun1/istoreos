@@ -127,9 +127,11 @@ TARGET_DEVICES += fastrhino_r6xs
 define Device/friendlyarm_nanopi-r3s
 $(call Device/Legacy/rk3566,$(1))
   DEVICE_VENDOR := FriendlyARM
-  DEVICE_MODEL := NanoPi R3S
-  SUPPORTED_DEVICES += friendlyelec,nanopi-r3s friendlyarm,nanopi-r3s
+  DEVICE_MODEL := NanoPi R3S | LTS
+  SUPPORTED_DEVICES += friendlyarm,nanopi-r3s-lts friendlyelec,nanopi-r3s friendlyarm,nanopi-r3s
   DEVICE_PACKAGES += kmod-r8169
+  DEVICE_DTS := rk3568/rk3566-nanopi-r3s rk3568/rk3566-nanopi-r3s-lts
+  BOOT_SCRIPT := rk3568-friendlyelec
 endef
 
 define Device/firefly_station-m2
@@ -224,6 +226,16 @@ $(call Device/Legacy/rk3588,$(1))
   SOC := rk3588s
   DEVICE_DTS = rk3588/$$(SOC)-$(lastword $(subst _, ,$(1)))
 endef
+
+define Device/easepi_r2
+$(call Device/Legacy/rk3588,$(1))
+  DEVICE_VENDOR := EasePi
+  DEVICE_MODEL := R2
+  DEVICE_DTS := rk3588/rk3588-easepi-r2
+  SUPPORTED_DEVICES += linkease,easepi-r2
+  DEVICE_PACKAGES += kmod-r8169 kmod-nvme kmod-thermal kmod-brcmfmac cypress-firmware-43455-sdio brcmfmac-nvram-43455-sdio-generic
+endef
+TARGET_DEVICES += easepi_r2
 
 define Device/friendlyarm_nanopi-r6s
 $(call Device/Legacy/rk3588s,$(1))
